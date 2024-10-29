@@ -1,0 +1,95 @@
+﻿@model AhmedStore.ViewModels.AddProductVM
+<div class="row">
+    <div class="col-3">
+        <partial name="DashBoard" />
+    </div>
+<div class="col-9 container mt-5">
+    <h2 class="text-center mb-4">Add Product</h2>
+
+    <form asp-action="AddProduct" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Product Name -->
+                <div class="form-floating mb-3">
+                    <input asp-for="ProductName" class="form-control" placeholder="Product Name" />
+                    <label asp-for="ProductName">Product Name</label>
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Discount Percentage -->
+                <div class="form-floating mb-3">
+                    <input asp-for="DiscountPercentage" class="form-control" placeholder="Discount Percentage" />
+                    <label asp-for="DiscountPercentage">Discount Percentage</label>
+                    <span asp-validation-for="DiscountPercentage" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <!-- Description -->
+                <div class="form-floating mb-3">
+                    <textarea asp-for="Description" class="form-control" placeholder="Description" style="height: 150px"></textarea>
+                    <label asp-for="Description">Description</label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Price -->
+                <div class="form-floating mb-3">
+                    <input asp-for="Price" class="form-control" placeholder="Price" />
+                    <label asp-for="Price">Price</label>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Stock -->
+                <div class="form-floating mb-3">
+                    <input asp-for="Stock" class="form-control" placeholder="Stock" />
+                    <label asp-for="Stock">Stock</label>
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Category -->
+                <div class="form-floating mb-3">
+                    <select asp-for="CategoryId" class="form-select" asp-items="@Model.ProductCategoryList">
+                        <option value="">Select Category</option>
+                    </select>
+                    <label asp-for="CategoryId">Category</label>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Shop -->
+                <div class="form-floating mb-3">
+                    <select asp-for="ShopId" class="form-select" asp-items="@Model.ShopList">
+                        <option value="">Select Shop</option>
+                    </select>
+                    <label asp-for="ShopId">Shop</label>
+                    <span asp-validation-for="ShopId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <!-- Product Images -->
+                <div class="mb-3">
+                    <label for="ProductImages" class="form-label">Product Images</label>
+                    <input type="file" name="ProductImages" multiple class="form-control" accept="image/*" />
+                    <span asp-validation-for="ProductImages" class="text-danger"></span>
+                </div>
+            </div>
+            <input asp-for="Id" value="@Model.Id" hidden/>
+            <!-- Submit Button -->
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Add Product</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+

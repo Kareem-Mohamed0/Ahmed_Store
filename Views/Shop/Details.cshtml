@@ -1,0 +1,51 @@
+﻿@model AhmedStore.Models.Shop
+
+@{
+    ViewData["Title"] = "Shop Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="card-title">@Model.Name</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Shop Image -->
+                <div class="col-md-4 text-center">
+                    @if (!string.IsNullOrEmpty(Model.ShopImage))
+                    {
+                        <img src="/assets/img/shops/@Model.ShopImage" alt="@Model.Name" class="img-fluid rounded" style="max-height: 300px;" />
+                    }
+                    else
+                    {
+                        <img src="/images/default-shop.png" alt="Default Shop Image" class="img-fluid rounded" style="max-height: 300px;" />
+                    }
+                </div>
+
+                <!-- Shop Details -->
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4 fw-bold">Description:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
+
+                        <dt class="col-sm-4 fw-bold">Address:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.ShopAddress)</dd>
+
+                        <dt class="col-sm-4 fw-bold">Owner:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.ShopOwner)</dd>
+
+                        <dt class="col-sm-4 fw-bold">Category:</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.ShopCategory.Name)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer text-center">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning mx-2">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary mx-2">Back to List</a>
+        </div>
+    </div>
+</div>

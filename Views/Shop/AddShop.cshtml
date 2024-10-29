@@ -1,0 +1,68 @@
+﻿@model AhmedStore.ViewModels.AddShopVM
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <span class="text-success">@TempData["Added"]</span>
+            <img id="imagePreview" src="/assets/img/shops/default-profile.png" alt="User Photo" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;margin: 10px auto 10px;" />
+            <label for="imageUpload" class="upload-icon position-relative" style=" align-items:center;  101px; cursor: pointer;">
+                <i class="d-block fa-solid fa-arrow-up-from-bracket text-primary" style="font-size:40px;"></i>
+            </label>
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title text-center">New Shop</h4>
+                    <hr />
+
+                    <form asp-action="AddShop" method="post" enctype="multipart/form-data">
+                        <input asp-for="ShopImage" type="file" id="imageUpload" accept="image/*" style="display: none;" />
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter Shop name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+                            <input asp-for="Description" class="form-control" placeholder="Enter Shop Description" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Address" class="control-label"></label>
+                            <input asp-for="Address" class="form-control" placeholder="Enter Shop Address" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ShopCategoryId" class="control-label"></label>
+                            <select asp-for="ShopCategoryId" asp-items="@Model.ShopCategories" class="form-control" placeholder="Enter category name"></select>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-plus"></i> Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-action="DisplayShops" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to List
+        </a>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.getElementById("imageUpload").addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("imagePreview").setAttribute("src", e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

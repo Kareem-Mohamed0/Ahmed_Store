@@ -1,0 +1,101 @@
+﻿@model Order
+<head>
+    <link href="~/css/invoice.css" rel="stylesheet" />
+</head>
+<div class="container mt-5">
+    <div id="printableInvoice" class="card">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Invoice</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-6">
+                    <h5>Your Company Name</h5>
+                    <p>1234 Street Name, City, Country</p>
+                    <p>Email: contact@company.com</p>
+                    <p>Phone: +123 456 7890</p>
+                </div>
+                <!-- Order Info -->
+                <div class="col-md-6 text-md-end">
+                    <p>Date: @Model.OrderDate.ToString("MM/dd/yyyy")</p>
+                    <p>Order Status: @Model.Status</p>
+                </div>
+            </div>
+            <hr />
+
+            <!-- Customer Info -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Billing Address</h5>
+                    <p>@Model.User.UserName</p>
+                    <p>@Model.Address</p>
+                    <p>Email: @Model.User.Email</p>
+                    <p>Phone: @Model.ContactPhone</p>
+                </div>
+            </div>
+            <hr />
+
+            <!-- Order Details -->
+            <h5>Order Details</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderProducts)
+                        {
+                            <tr>
+                                <td>@item.Product.ProductName</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Product.Price.ToString("C")</td>
+                                <td>@(item.Quantity * item.Product.Price).ToString("C")</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3" class="text-end">Subtotal</th>
+                            <td>@Model.TotalAmount.ToString("C")</td>
+                        </tr>
+                        <tr>
+                            <th colspan="3" class="text-end">Total</th>
+                            <td><strong>@Model.TotalAmount.ToString("C")</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Payment Info -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Payment Method</h5>
+                    <p>When Shipped</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button class="btn btn-primary" onclick="printDiv('printableInvoice')">Print Invoice</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+<!-- CSS for printing only the specific part -->
+

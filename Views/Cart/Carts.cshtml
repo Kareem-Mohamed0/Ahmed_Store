@@ -1,0 +1,52 @@
+﻿@model Cart
+@{
+    short i = 0;
+}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your Carts</h2>
+
+    @if (Model != null)
+    {
+        <div class="col">
+                <div class="mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Cart #@(++i)</h5>
+                        </div>
+                        <div class="card-body">
+                            @if (@Model.CartProducts.Any())
+                            {
+                                <ul class="list-group list-group-flush">
+                                    @foreach (var item in @Model.CartProducts)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>@item.Product.ProductName</span>
+                                            <img src="/assets/img/product/@item.Product.ProductImages.FirstOrDefault().ImageName" alt="Alternate Text" style="width:40px;"class="p-0"/>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="text-muted">No products in this cart.</p>
+                            }
+                        </div>
+                        <div class="card-footer">
+                            <a asp-action="CartDetails" asp-route-CartId="@Model.Id">
+                                <button class="btn btn-outline-primary btn-sm">
+                                    Details
+                                </button>
+                            </a>
+                            <a class="btn btn-danger btn-sm float-end"
+                               asp-action="DeleteCart" asp-route-CartId="@Model.Id">
+                                Delete Cart</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-muted">You have no carts.</p>
+    }
+</div>

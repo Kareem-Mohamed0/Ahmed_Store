@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Shop Conflict";
+}
+
+<div class="containerH mt-5">
+    <div class="alert alert-warning" role="alert">
+        <h2>Shop Conflict</h2>
+        <p>@TempData["ShopConflict"]</p>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5>Action Required</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="ConfirmCartDeletion" method="post" class="mb-3">
+                <input type="hidden" name="OldCartId" value="@TempData["OldCartId"]" />
+                <input type="hidden" name="NewShopId" value="@TempData["NewShopId"]" />
+                <input type="hidden" name="ProductId" value="@TempData["ProductId"]" />
+                <button type="submit" class="btn btn-danger">Yes, delete old cart and proceed</button>
+            </form>
+
+            <form asp-action="Cancel" method="post">
+                <input type="hidden" name="ShopId" value="@TempData["NewShopId"]" />
+                <button type="submit" class="btn btn-secondary">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add some custom styles if needed -->
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .containerH {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .alert {
+        font-size: 1.25rem;
+    }
+</style>

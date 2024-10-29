@@ -1,0 +1,110 @@
+﻿@model AhmedStore.ViewModels.RegisterVM
+
+<section class="account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="account-contents" style="background-color:blue; /* background: url('/assets/img/about/about1.jpg'); */ background-size: cover;">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-thumb text-center">
+                                
+                                <h2>Upload Photo</h2>
+                        
+
+                                <!-- Circular Image Preview with Plus Icon -->
+                                <div class="d-flex flex-column justify-content-between image-preview-container position-relative">
+                                    <img id="imagePreview" src="/assets/img/default-profile.png" alt="User Photo" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;margin: 10px auto 10px;" />
+
+                                    <!-- Hidden file input -->
+                                    
+
+                                    <!-- Plus Icon for Image Upload -->
+                                    <label for="imageUpload" class="upload-icon position-relative" style=" align-items:center;  101px; cursor: pointer;">
+                                        <i class="d-block fa-solid fa-arrow-up-from-bracket" style="font-size:40px;"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-content">
+                                
+                                <form asp-action="Register" asp-controller="Account" method="post" enctype="multipart/form-data" >
+                                    <input asp-for="Image" type="file" id="imageUpload" accept="image/*" style="display: none;" />
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="single-acc-field">
+                                        <label asp-for="Name">Name</label>
+                                        <input asp-for="Name" class="form-control" placeholder="Enter Your Name" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="single-acc-field">
+                                        <label asp-for="Email">Email</label>
+                                        <input asp-for="Email" class="form-control" placeholder="Enter Your Email" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="single-acc-field">
+                                        <label asp-for="Pass">Password</label>
+                                        <input asp-for="Pass" class="form-control" type="password" placeholder="At least 6 characters" />
+                                        <span asp-validation-for="Pass" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="single-acc-field">
+                                        <label asp-for="ConfirmPass">Confirm Password</label>
+                                        <input asp-for="ConfirmPass" class="form-control" type="password" placeholder="Re-enter your password" />
+                                        <span asp-validation-for="ConfirmPass" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="single-acc-field">
+                                        <label asp-for="BirthDate">Birth Date</label>
+                                        <input asp-for="BirthDate" class="form-control" type="date" />
+                                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="single-acc-field">
+                                        <label asp-for="Phone">Phone</label>
+                                        <input asp-for="Phone" class="form-control" placeholder="Enter your phone number" />
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="single-acc-field">
+                                        <label asp-for="Address">Address</label>
+                                        <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="single-acc-field boxes">
+                                        <input type="checkbox" id="checkbox">
+                                        <label for="checkbox">I'm not a robot</label>
+                                    </div>
+
+                                    <div class="single-acc-field">
+                                        <button type="submit" class="btn btn-primary">Register now</button>
+                                    </div>
+
+                                    <a asp-action="Login">Already have an account? Login</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.getElementById("imageUpload").addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("imagePreview").setAttribute("src", e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

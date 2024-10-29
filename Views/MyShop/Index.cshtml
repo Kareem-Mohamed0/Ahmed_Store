@@ -1,0 +1,79 @@
+﻿<!-- Sale & Revenue Start -->
+<div class="container-fluid pt-4 px-4">
+
+    <div class="row g-4">
+        <div class="bg-light col-sm-6 col-xl-3">
+            <a href="/MyShop/AddProduct" class="custom-link" onclick="setActive(this)">
+                <div class="custom-div bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa-solid fa-cart-shopping text-primary" style="font-size:40px;"></i>
+                    <div class="ms-3">
+                        <h3>Products</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <a href="/MyShop/MyCategories" onclick="setActive(this)">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa-solid fa-cubes-stacked text-primary" style="font-size:40px;"></i>
+                    <div class="ms-3">
+                        <h3>Categories</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <a href="/MyShop/MyOrders" onclick="setActive(this)">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa-solid fa-bell text-primary" style="font-size:40px;"></i>
+                    <div class="ms-3">
+                        <h3>Orders</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <a href="/MyShop/MyProducts" onclick="setActive(this)">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa-solid fa-shop text-primary" style="font-size:40px;"></i>
+                    <div class="ms-3">
+                        <h3>Shop Profile</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Set the active background color for the clicked link
+    function setActive(element) {
+        // Remove the active class from all links
+        const allLinks = document.querySelectorAll('.custom-link .custom-div');
+        allLinks.forEach(link => {
+            link.classList.remove('bg-changed');
+            link.parentNode.classList.remove('active'); // Remove active class from parent anchor
+        });
+
+        // Add active class to the clicked link
+        const clickedDiv = element.querySelector('.custom-div');
+        clickedDiv.classList.add('bg-changed');
+        element.classList.add('active'); // Mark this link as active
+    }
+</script>
+
+<style>
+    .bg-changed {
+        background-color: orangered !important; /* Change to your desired color */
+    }
+
+    .custom-link.active .custom-div {
+        background-color: orangered !important; /* Ensure active color persists */
+    }
+    .custom-div{
+        background-color:burlywood;
+    }
+</style>

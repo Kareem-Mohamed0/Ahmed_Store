@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Shop>
+<link href="~/css/media.css" rel="stylesheet" />
+<div class="container-sm shadow-lg border-3 Con">
+    <!-- Search part Start -->
+    <div class="row">
+        <div class="col-12 text-center ">
+
+            <div class="input-group mt-3 col-lg-5 col-sm-12">
+                <!-- Form for searching shops by name within a specific category -->
+                <form asp-action="ShopSearch" method="get" class="w-100">
+                    <div class="input-group m-0">
+                        <!-- Search input -->
+                        <input type="search" name="Search" class="form-control" placeholder="Search Shops..." aria-label="Search Shops" aria-describedby="button-addon2">
+                        <!-- Hidden input for the shop category -->
+                        <input type="hidden" name="ShopCategory" value="@ViewBag.ShopCategory">
+                        <!-- Submit button for search -->
+                        <button class="btn btn-outline-success" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </form>
+                <!-- Link to list all shops by category -->
+                <a asp-action="ShopSearchByCategory" asp-route-shopcat="@ViewBag.ShopCategory" class="btn btn-warning ms-2 mt-2">All</a>
+            </div>
+        </div>
+    </div>
+    <!-- Search part End -->
+    <!-- Shop Cards part Start -->
+<div class="row p-3">
+    @foreach (var shop in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
+            <div class="card h-auto shadow-sm border-1 m-1 mt-4 shop-card" style="width: 100%;">
+                <!-- Rounded Image with Bootstrap classes -->
+                <a asp-action="DisplayProductsForUsers" asp-route-id="@shop.Id" class="text-decoration-none">
+                    <img src="/assets/img/shops/@shop.ShopImage" class="card-img-top img-fluid rounded-circle mb-3" alt="@shop.Name" style="width: 100%; height: 150px; object-fit: cover;">
+                    <div class="card-body text-center border-top pb-0 mt-3">
+                        <!-- Shop name as card title -->
+                        <h4 class="card-title">@shop.Name</h4>
+                    </div>
+                    <div class="card-body text-black-50 p-3 pt-2">
+                        <!-- Shop description as card content -->
+                        <h4 class="card-title">@shop.Description</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .shop-card {
+        transition: transform 0.2s ease;
+    }
+
+    .shop-card:hover {
+        transform: scale(1.05);
+        z-index: 10;
+    }
+
+
+</style>
+
+    <!-- Shop Cards part End -->
+</div>
+
+<style>
+    .shop-card {
+        transition: transform 0.2s ease; /* Smoother hover effect */
+    }
+
+        .shop-card:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+    .Con {
+        box-shadow: 0 1px 7px 1px rgb(0 0 0 / 40%) !important;
+        max-width: 950px;
+    }
+</style>

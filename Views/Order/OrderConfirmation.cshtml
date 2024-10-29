@@ -1,0 +1,37 @@
+﻿@model Order
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Your Order Has Been Confirmed!</h3>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="mt-4">Thank you for your purchase!</h5>
+                    <p>Your order is being processed, and you will receive a confirmation email shortly.</p>
+                    <p>Follow your order history on your <a href="/Account/Profile" class="text-primary"><strong>profile page</strong></a>.</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/Home/Index" class="btn btn-success">Back to Shop</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-header {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-footer {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+</style>

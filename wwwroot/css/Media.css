@@ -1,0 +1,21 @@
+﻿/* Responsive styles for mobile */
+@media (max-width: 576px) {
+    .product-card {
+        max-width: 80%;
+    }
+    .ProductCategories{
+        display:none;
+    }
+}
+@media (max-width: 768px) {
+    .shop-card {
+        width: 100%;
+    }
+}
+/*@media (max-width: 764px) {
+
+
+    .ProductCategories {
+        display: none;
+    }
+}*/

@@ -1,0 +1,44 @@
+﻿@model AhmedStore.ViewModels.RoleVM
+
+@{
+    ViewData["Title"] = "Add Role";
+}
+<div class="row">
+    <div class="col-3">
+        <partial name="DashBoard" />
+    </div>
+<div class="col-9 container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Add New Role</h3>
+                </div>
+                <span class="text-danger pl-1">  @TempData["Exist"]</span>
+                <div class="card-body">
+                    <form asp-action="AddRole">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="RoleName" class="form-label"></label>
+                            <input asp-for="RoleName" class="form-control" placeholder="Enter role name" />
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-plus-circle"></i> Create Role
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="DisplayRoles" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

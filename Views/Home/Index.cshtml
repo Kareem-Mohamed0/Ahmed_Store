@@ -1,0 +1,112 @@
+﻿@using AhmedStore.ViewModels
+@model IEnumerable<ProductVM>
+
+<div class="container mt-5">
+    <div class="container mt-5">
+        <div class="row g-4 d-flex justify-content-evenly">
+            <!-- Food Tile -->
+            <div class="col-md-6 category_card">
+                <a asp-action="ShopSearchByCategory" asp-controller="Search" asp-route-shopcat="Food" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0" style="background-color: #FF5733;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://images.deliveryhero.io/image/talabat/launcher/food.png?v=2" class="img-fluid rounded-start" alt="Food image">
+                            </div>
+                            <div class="col-md-8 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h3 class="card-title text-white">Food</h3>
+                                    <p class="card-text text-white">Find deals, free delivery, and more from our restaurant partners.</p>
+                                    <p class="text-white fw-bold">Explore</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Groceries Tile -->
+            <div class="col-md-6 category_card">
+                <a asp-action="ShopSearchByCategory" asp-controller="Search" asp-route-shopcat="Grocery" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0" style="background-color: #28B463;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://images.deliveryhero.io/image/talabat/launcher/grocery.png?v=2" class="img-fluid rounded-start" alt="Groceries image">
+                            </div>
+                            <div class="col-md-8 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h3 class="card-title text-white">Groceries</h3>
+                                    <p class="card-text text-white">Don't stand in line - order online! Choose from top stores delivering groceries to you.</p>
+                                    <p class="text-white fw-bold">Explore</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Health and Wellness Tile -->
+            <div class="col-md-6 category_card">
+                <a asp-action="ShopSearchByCategory" asp-controller="Search" asp-route-shopcat="Health and wellness" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm border-0" style="background-color: #3498DB;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://images.deliveryhero.io/image/talabat/launcher/pharmacy.png?v=2" class="img-fluid rounded-start" alt="Health and wellness image">
+                            </div>
+                            <div class="col-md-8 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h3 class="card-title text-white">Health and wellness</h3>
+                                    <p class="card-text text-white">Got the sniffles? We’ve got you. Get medicine delivered to you quickly and easily.</p>
+                                    <p class="text-white fw-bold">Explore</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <style>
+        .category_card{
+            margin-top:18px;
+        }
+    </style>
+
+
+    <div class="row" id="DiscontedProducts">
+        <div class="col-12 text-center">
+            <h2 class="m-5">Discounted Products</h2>
+        </div>
+    </div>
+    <div class="row p-4">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-3">
+                <div class="card product-card">
+                    <a>
+                        <div class="position-relative">
+                            <img src="/assets/img/product/@p.Image" alt="Product Image" class="product-img" onclick="openProductDetails()">
+                            <div class="cart-icon p-3" onclick="addToCart()">
+                                <i class="cart_blus fas fa-cart-plus"></i>
+                            </div>
+                            <div class="discount-badge">@p.DiscountPercentage% OFF</div>
+                        </div>
+                        <div class="product-info text-center">
+                            <p class="product-name">@p.Name</p>
+                            <p class="product-name">@p.ShopName</p>
+
+                            <p>
+                                <span class="product-price"> جنيه @p.Price </span>
+                                <span class="discounted-price"> @p.DiscountedPrice جنيه</span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<style>
+    html {
+        scroll-behavior: smooth !important;
+    }
+</style>

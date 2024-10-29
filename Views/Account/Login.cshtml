@@ -1,0 +1,45 @@
+﻿@using AhmedStore.ViewModels
+@model LoginVM
+    <div class="container m-2">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="account-contents" style="background: url('assets/img/about/about1.jpg'); background-size: cover;">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-thumb">
+                                <h2>Login now</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consectetur similique deleniti pariatur enim cumque eum</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-content">
+                                <form asp-action="Login" asp-controller="Account" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="single-acc-field">
+                                        <label asp-for="Email">Email</label>
+                                    <input asp-for="Email" placeholder="Enter your Email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="single-acc-field">
+                                    <label asp-for="Password">Password</label>
+                                    <input asp-for="Password" placeholder="Enter your password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                <div class="single-acc-field boxes">
+                                    <input asp-for="rememberMe">
+                                    <label asp-for="rememberMe">rememberMe</label>
+                                </div>
+                                    <div class="single-acc-field">
+                                        <button type="submit">Login Account</button>
+                                    </div>
+                                    <a href="forget-password.html">Forget Password?</a>
+                                    <a href="/Account/Register">Not Account Yet?</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
